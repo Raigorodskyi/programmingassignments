@@ -1,7 +1,7 @@
 /*
  *MIT License
 
-Copyright (c) [2020] [Igor Raigorodskyi]
+Copyright (c) [2021] [Igor Raigorodskyi]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package prog2assign03;
 import java.util.Arrays;
+import java.util.ArrayList;
 /**
  *
  * @author Igor Raigorodskyi
@@ -32,14 +33,20 @@ public class Prog2Assign03 {
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String[] args) {
-        double[][] numss = {{1, 2, 4, 15}, {111, 2, 33, 44, 55, 5}};
-        double[][] numss2 = {{1, -12, 13, -14, 100, 1223}, {111, 2, 33, 44, 55, 5} ,{1.11, 4.7, 3.33}};
+        double[][] numss = {{1, 2, 4, 15}, {111, 2, 33, 44}, {2, 4, 5, 44}};
+        double[][] numss2 = {{1, -12, 13, -14, 100, 1223}, {111, 2, 33, 44, 55, 5} ,{1.11, 4.7, 3.33}, {23456, 654, 5}};
         Task1 task1 = new Task1();
-        //System.out.println(Arrays.deepToString(task1.add(numss, numss2)));
-        //System.out.println(Arrays.deepToString(task1.deleteRow(numss2, 3)));
-        //System.out.println(Arrays.deepToString(task1.appendArray(numss, numss2)));
-        System.out.println(Arrays.deepToString(task1.expendArray(numss, numss2)));
+//        System.out.println(Arrays.deepToString(task1.add(numss, numss2)));
+//        System.out.println(Arrays.deepToString(task1.deleteRow(numss2, 2)));
+//        System.out.println(Arrays.deepToString(task1.transposeMatrix(numss)));
+//        System.out.println(Arrays.deepToString(task1.appendArray(numss, numss2)));
+//        System.out.println(Arrays.deepToString(task1.expendArray(numss, numss2)));
+        Animal animal = new Animal("Olga", "Trans", 6, "PeppaPig");
+        System.out.println(animal.getAge());
+        System.out.println(animal.toString());
     }
     
 }

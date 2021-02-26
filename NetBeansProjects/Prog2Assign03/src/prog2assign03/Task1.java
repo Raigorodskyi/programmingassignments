@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) [2020] [Igor Raigorodskyi]
+Copyright (c) [2021] [Igor Raigorodskyi]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package prog2assign03;
 import java.util.Arrays;
-import java.util.Random;
 /**
  *
  * @author Igor Raigorodskyi
@@ -124,10 +123,9 @@ public class Task1 {
                         sumNumss[i][j] = bigNums[j];   
                     }
                 }
-    
             }
         } else {       
-            // in case if the length of both arrays is different
+            // in case if the length of both 2D arrays is different
                 // creating new 2D arrays to figure out which one of the arrays 
                 // is shorter and which one is longer
             if (numss1.length < numss2.length) {
@@ -181,16 +179,12 @@ public class Task1 {
      * @return 2D array without the chosen row
      */
     public double[][] deleteRow(double[][] numss, int idx) {
-        if (idx <= numss.length) {
-            Random random = new Random();
-            idx = random.nextInt(numss.length);
-        }
         double [][] numssDeleted = new double [numss.length - 1][];
         
         for (int i = 0; i < idx; i++) {
              numssDeleted[i] = numss[i];
         }
-        for (int i = idx; i < numss.length; i++) {
+        for (int i = idx + 1; i < numss.length; i++) {
             numssDeleted[i - 1] = numss[i];
         }
         
@@ -212,11 +206,23 @@ public class Task1 {
         return unitedArray;
     }
     
+    /**
+     * Expands the array. Basically unites the 2 arrays at the same index
+     * @param numss1 first input 2D array
+     * @param numss2 second input 2D array
+     * @return expanded 2D array
+     */
     double[][] expendArray(double[][] numss1, double[][] numss2) {
         double [][] expendedArray = new double [Math.max(numss1.length, numss2.length)][];
+        //if else loop to verify if the 2 2D arrays are of the same length
         if (numss1.length == numss2.length) {
-            
+            for (int i = 0; i < expendedArray.length; i++) {
+                expendedArray[i] = new double[numss1[i].length + numss2[i].length];
+                System.arraycopy(numss1[i], 0, expendedArray[i], 0, numss1[i].length);
+                System.arraycopy(numss2[i], 0, expendedArray[i], numss1[i].length, numss2[i].length);
+            }
         } else {
+            // we figure out which of the arrays is smaller and which one is bigger
             double [][] smallNumss; 
             double [][] bigNumss;
             if (numss1.length < numss2.length) {
@@ -226,20 +232,34 @@ public class Task1 {
                 bigNumss = Arrays.copyOf(numss1, numss1.length);
                 smallNumss = Arrays.copyOf(numss2, numss2.length);
             }
+            // we fill out the expanded array with the numbers of an extra array from bigNumss 
             for (int i = smallNumss.length; i < bigNumss.length; i++) {
                 expendedArray[i] = bigNumss[i];
             }
+            // the distribution of nums like if there was not an extra array
             for (int i = 0; i < smallNumss.length; i++) {
                 expendedArray[i] = new double[numss1[i].length + numss2[i].length];
-                for (int j = 0; j < numss1[i].length; j++) {
-                    expendedArray[i][j] = numss1[i][j];
-                }
-                for (int j = numss1.length; j < expendedArray[i].length; j++) {
- //                   expendedArray[i][j] = numss2[i][j - numss1.length];
-                }
+                System.arraycopy(numss1[i], 0, expendedArray[i], 0, numss1[i].length);
+                System.arraycopy(numss2[i], 0, expendedArray[i], numss1[i].length, numss2[i].length);
             }
         }
-        
         return expendedArray;
+    }
+    
+    /**
+     * Flips the row and the column of matrix
+     * @param numss input matrix
+     * @return flipped matrix
+     */
+    public double[][] transposeMatrix(double[][] numss) {
+        int oldRow = numss[0].length;
+        int oldColumn = numss.length;
+        double [][] transposedMatrix = new double[oldRow][oldColumn];
+        for (int i = 0; i < numss.length; i++) {
+            for (int j = 0; j < numss[i].length; j++) {
+                transposedMatrix[j][i] = numss[i][j];
+            }
+        }
+        return transposedMatrix;
     }
 }

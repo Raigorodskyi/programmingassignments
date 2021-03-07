@@ -24,48 +24,67 @@
 package animal;
 
 /**
- * A class of Dog
+ * A class of Animal
  *
  * @author Yi Wang
  */
-public class Dog extends DomesticatedAnimal {
+public class Animal {
 
-    private int sportHour;
+    private String name;
+    private String type;
+    private int age;
+    private String gender;
 
-    public Dog() {
-        super();
-        this.sportHour = 0;
+    public Animal() {
+        this.name = "";
+        this.type = "";
+        this.age = -1;
+        this.gender = "";
     }
 
-    public Dog(int sportHour, int closeToHumanLevel, String name, String type, int age, String gender) {
-        super(closeToHumanLevel, name, type, age, gender);
-        this.sportHour = sportHour;
+    public Animal(String name, String type, int age, String gender) {
+        this.name = name;
+        this.type = type;
+        this.age = age;
+        this.gender = gender;
     }
 
-    public Dog(Dog dog) {
-        super(dog);
-        this.sportHour = dog.sportHour;
+    public Animal(Animal animal) {
+        this.name = animal.name;
+        this.type = animal.type;
+        this.age = animal.age;
+        this.gender = animal.gender;
     }
 
-    public boolean equals(Dog dog) {
-        return super.equals(dog) && this.sportHour == dog.sportHour;
-    }
-     @Override 
-    public String toString() {
-    String str = "";
-    
-    str += super.toString();
-    str += String.format("%-10s: %s\n", "Sport Hour", sportHour);
-    
-    return str;
-    }
-    
-    public int getSportHour() {
-        return sportHour;
+    public String getName() {
+        return name;
     }
 
-    public void setSportHour(int sportHour) {
-        this.sportHour = sportHour;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

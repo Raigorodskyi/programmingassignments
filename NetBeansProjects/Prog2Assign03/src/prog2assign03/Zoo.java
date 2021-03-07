@@ -30,7 +30,7 @@ import prog2assign03.Animal;
  * @author Igor Raigorodskyi
  */
 public class Zoo {
-    ArrayList<Animal> animals = new ArrayList<>(); 
+    private ArrayList<Animal> animals = new ArrayList<>(); 
     // creating an abstract new Animal to use it in the methods
     Animal animal = new Animal();
 
@@ -89,7 +89,7 @@ public class Zoo {
             }
         }
         return ((Math.max(females, males) / animalsOfType.size() * 100) - 
-                (Math.min(females, males) / animalsOfType.size() * 100)) < 20;
+                (Math.min(females, males) / animalsOfType.size()) * 100) > 20;
     }
     
     public void removeOldest(String type) {
@@ -101,17 +101,12 @@ public class Zoo {
                 animalsOfType.add(animal1);
             }
         }
-        // figuring out what is the oldest age
-        int oldestAge = 0;
-        for (Animal animalOfType : animalsOfType) {
-            if (animalOfType.getAge() > oldestAge) {
-                oldestAge = animalOfType.getAge();
-            }
-        }
+       // figuring out what is the oldest age using the getOldestAge() method that I also used in toString()
+        int oldestAge = getOldestAge(type);
         // removing the animals whose age equals the oldest age
         for (int i = 0; i < animalsOfType.size(); i++) {
             if (animalsOfType.get(i).getAge() == oldestAge) {
-                animalsOfType.remove(i);
+                animals.remove(animalsOfType.get(i));
             }
         }
         updateValidTypes();
@@ -125,7 +120,7 @@ public class Zoo {
     public int countMales(ArrayList<Animal> animals) {
         int count = 0;
         for (Animal animal1 : animals) {
-            if (animal1.getType().equalsIgnoreCase("male")) {
+            if (animal1.getGender().equalsIgnoreCase("male")) {
                 count++;
             }
         }
@@ -135,7 +130,7 @@ public class Zoo {
     public int countFemales(ArrayList<Animal> animals) {
         int count = 0;
         for (Animal animal1 : animals) {
-            if (animal1.getType().equalsIgnoreCase("female")) {
+            if (animal1.getGender().equalsIgnoreCase("female")) {
                 count++;
             }
         }
@@ -153,7 +148,7 @@ public class Zoo {
         }
         int count = 0;
         for (Animal animalOfType : animalsOfType) {
-            if (animalOfType.getType().equalsIgnoreCase("female")) {
+            if (animalOfType.getGender().equalsIgnoreCase("female")) {
                 count++;
             }
         }
@@ -171,7 +166,7 @@ public class Zoo {
         }
         int count = 0;
         for (Animal animalOfType : animalsOfType) {
-            if (animalOfType.getType().equalsIgnoreCase("male")) {
+            if (animalOfType.getGender().equalsIgnoreCase("male")) {
                 count++;
             }
         }
@@ -206,37 +201,37 @@ public class Zoo {
         str += String.format("%s %d\n", "Female:", countFemales(animals));
         
         str += "Dog:\n";
-        str += String.format("%-4s%-10s: %d\n", "Number:", countAnimals("Dog"));
-        str += String.format("%-4s%-10s: %d\n", "Male:", countTypeMales(animals, "dog"));
-        str += String.format("%-4s%-10s: %d\n", "Female:", countTypeMales(animals, "dog"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Number:", countAnimals("Dog"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Male:", countTypeMales(animals, "dog"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Female:", countTypeFemales(animals, "dog"));
         if (isGenderBalanced("Dog")) {
-            str += String.format("%-4s%-10s: %s\n", "Balanced", "Yes");
+            str += String.format("%-4s%-10s: %s\n", " ", "Balanced", "Yes");
         } else {
-            str += String.format("%-4s%-10s: %s\n", "Balanced", "No");
+            str += String.format("%-4s%-10s: %s\n", " ", "Balanced", "No");
         }
-        str += String.format("%-4s%-10s: %d\n", "Oldest Age:", getOldestAge("Dog"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Oldest Age", getOldestAge("Dog"));
         
         str += "Cat:\n";
-        str += String.format("%-4s%-10s: %d\n", "Number:", countAnimals("Cat"));
-        str += String.format("%-4s%-10s: %d\n", "Male:", countTypeMales(animals, "Cat"));
-        str += String.format("%-4s%-10s: %d\n", "Female:", countTypeMales(animals, "Cat"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Number", countAnimals("Cat"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Male", countTypeMales(animals, "Cat"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Female", countTypeFemales(animals, "Cat"));
         if (isGenderBalanced("Cat")) {
-            str += String.format("%-4s%-10s: %s\n", "Balanced", "Yes");
+            str += String.format("%-4s%-10s: %s\n", " ", "Balanced", "Yes");
         } else {
-            str += String.format("%-4s%-10s: %s\n", "Balanced", "No");
+            str += String.format("%-4s%-10s: %s\n", " ", "Balanced", "No");
         }
-        str += String.format("%-4s%-10s: %d\n", "Oldest Age:", getOldestAge("Cat"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Oldest Age", getOldestAge("Cat"));
         
         str += "Monkey:\n";
-        str += String.format("%-4s%-10s: %d\n", "Number:", countAnimals("Monkey"));
-        str += String.format("%-4s%-10s: %d\n", "Male:", countTypeMales(animals, "Monkey"));
-        str += String.format("%-4s%-10s: %d\n", "Female:", countTypeMales(animals, "Monkey"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Number", countAnimals("Monkey"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Male", countTypeMales(animals, "Monkey"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Female", countTypeFemales(animals, "Monkey"));
         if (isGenderBalanced("Monkey")) {
-            str += String.format("%-4s%-10s: %s\n", "Balanced", "Yes");
+            str += String.format("%-4s%-10s: %s\n", " ", "Balanced", "Yes");
         } else {
-            str += String.format("%-4s%-10s: %s\n", "Balanced", "No");
+            str += String.format("%-4s%-10s: %s\n", " ", "Balanced", "No");
         }
-        str += String.format("%-4s%-10s: %d\n", "Oldest Age:", getOldestAge("Monkey"));
+        str += String.format("%-4s%-10s: %d\n", " ", "Oldest Age", getOldestAge("Monkey"));
         
         return str;
     }

@@ -33,8 +33,7 @@ public class Animal {
     private String gender;
     private int age;
     private String type;
-    private String[] legalTypesStrings = {"Cat", "Dog", "Monkey"};
-    private static ArrayList<String> legalTypes = new ArrayList(Arrays.asList(Animal.legalTypes));
+    private static ArrayList<String> legalTypes = new ArrayList(Arrays.asList(new String[] {"Cat", "Dog", "Monkey"}));
     
     
     public Animal() {
@@ -113,7 +112,9 @@ public class Animal {
     }
 
     public void setType(String type) {
-        this.type = type;
+        if (isTypeValid(type)) {
+        this.type = type;   
+        }
     }
 
     public ArrayList<String> getLegalTypes() {

@@ -47,19 +47,6 @@ public class Dog extends DomesticatedAnimal {
         this.sportHour = dog.sportHour;
     }
 
-    public boolean equals(Dog dog) {
-        return super.equals(dog) && this.sportHour == dog.sportHour;
-    }
-     @Override 
-    public String toString() {
-    String str = "";
-    
-    str += super.toString();
-    str += String.format("%-10s: %s\n", "Sport Hour", sportHour);
-    
-    return str;
-    }
-    
     public int getSportHour() {
         return sportHour;
     }

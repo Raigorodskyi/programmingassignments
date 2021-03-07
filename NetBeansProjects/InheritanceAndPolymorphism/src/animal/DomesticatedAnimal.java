@@ -24,48 +24,43 @@
 package animal;
 
 /**
- * A class of Dog
+ * A class of DomesticatedAnimal
  *
  * @author Yi Wang
  */
-public class Dog extends DomesticatedAnimal {
+public class DomesticatedAnimal extends Animal {
 
-    private int sportHour;
+    private int closeToHumanLevel;
 
-    public Dog() {
+    public DomesticatedAnimal() {
+        // super means "Animal" here,
+        // you can only call super constructor in the first line
         super();
-        this.sportHour = 0;
+        this.closeToHumanLevel = 0;
     }
 
-    public Dog(int sportHour, int closeToHumanLevel, String name, String type, int age, String gender) {
-        super(closeToHumanLevel, name, type, age, gender);
-        this.sportHour = sportHour;
+    public DomesticatedAnimal(int closeToHumanLevel, String name,
+            String type, int age, String gender) {
+        super(name, type, age, gender);
+        this.closeToHumanLevel = closeToHumanLevel;
     }
 
-    public Dog(Dog dog) {
-        super(dog);
-        this.sportHour = dog.sportHour;
+    public DomesticatedAnimal(DomesticatedAnimal domesticatedAnimal) {
+        // polymorphism: DomesticatedAnimal extends Animal
+        // DomesticatedAnimal is a special kind of Animal
+        // if a method requires a parameter of class B, when you call the method
+        // you can give an object of class B, or you can also give an object of
+        // any subclass of class B.
+        super(domesticatedAnimal);
+        this.closeToHumanLevel = domesticatedAnimal.closeToHumanLevel;
     }
 
-    public boolean equals(Dog dog) {
-        return super.equals(dog) && this.sportHour == dog.sportHour;
-    }
-     @Override 
-    public String toString() {
-    String str = "";
-    
-    str += super.toString();
-    str += String.format("%-10s: %s\n", "Sport Hour", sportHour);
-    
-    return str;
-    }
-    
-    public int getSportHour() {
-        return sportHour;
+    public int getCloseToHumanLevel() {
+        return closeToHumanLevel;
     }
 
-    public void setSportHour(int sportHour) {
-        this.sportHour = sportHour;
+    public void setCloseToHumanLevel(int closeToHumanLevel) {
+        this.closeToHumanLevel = closeToHumanLevel;
     }
 
 }

@@ -36,8 +36,7 @@ public class Task1 {
      * @return the min value in the 2D array
      */
     public double min(double[][] numss) {
-        double min = Double.NEGATIVE_INFINITY;
-
+        double min = Double.POSITIVE_INFINITY;
         for (double[] nums : numss) {
             for (double num : nums) {
                 min = Math.min(min, num);
@@ -53,8 +52,7 @@ public class Task1 {
      */
     public double[] minOfRow(double[][] numss) {
         double[] mins = new double[numss.length];      
-        Arrays.fill(mins, Double.NEGATIVE_INFINITY); 
-
+        Arrays.fill(mins, Double.POSITIVE_INFINITY); 
         for (int i = 0; i < numss.length; i++) {
             for (double num : numss[i]) {
                 mins[i] = Math.min(num, mins[i]);
@@ -69,14 +67,13 @@ public class Task1 {
      * @return the min in each column of that 2d array
      */
     public double[] minOfCol(double[][] numss) {
-        // find the longest row in the 2d array
+        // finding the longest row in the 2d array
         int maxCol = 0;
         for (double[] nums : numss) {
             maxCol = Math.max(maxCol, nums.length);
         }
         double[] mins = new double[maxCol];    
-        Arrays.fill(mins, Double.NEGATIVE_INFINITY);   
-
+        Arrays.fill(mins, Double.POSITIVE_INFINITY);   
         for (double[] nums : numss) {
             for (int j = 0; j < nums.length; j++) {
                 mins[j] = Math.min(nums[j], mins[j]);
@@ -85,6 +82,12 @@ public class Task1 {
         return mins;
     }
     
+    /**
+     * Adds 2 2D arrays together
+     * @param numss1 first input array
+     * @param numss2 second input array
+     * @return new array with added 2 numbers 
+     */
     public double[][] add(double[][] numss1, double[][] numss2) {
         // creating new 2D array that would be like a sum of numss1 and numss2
         double [][] sumNumss = new double [Math.max(numss1.length, numss2.length)][];
@@ -185,9 +188,8 @@ public class Task1 {
              numssDeleted[i] = numss[i];
         }
         for (int i = idx + 1; i < numss.length; i++) {
-            numssDeleted[i - 1] = numss[i];
-        }
-        
+            numssDeleted[i - 1] = numss[i];  // i-1 because we jumped 1 number in numss but not in numssDeleted
+        }    
         return numssDeleted;
     }
     

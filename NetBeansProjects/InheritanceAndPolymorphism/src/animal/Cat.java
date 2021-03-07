@@ -24,48 +24,35 @@
 package animal;
 
 /**
- * A class of Dog
+ * A class of Cat
  *
  * @author Yi Wang
  */
-public class Dog extends DomesticatedAnimal {
+public class Cat extends DomesticatedAnimal {
 
-    private int sportHour;
+    private int sleepHour;
 
-    public Dog() {
+    public Cat() {
         super();
-        this.sportHour = 0;
+        this.sleepHour = sleepHour;
     }
 
-    public Dog(int sportHour, int closeToHumanLevel, String name, String type, int age, String gender) {
+    public Cat(int sleepHour, int closeToHumanLevel, String name, String type, int age, String gender) {
         super(closeToHumanLevel, name, type, age, gender);
-        this.sportHour = sportHour;
+        this.sleepHour = sleepHour;
     }
 
-    public Dog(Dog dog) {
-        super(dog);
-        this.sportHour = dog.sportHour;
+    public Cat(Cat cat) {
+        super(cat);
+        this.sleepHour = cat.sleepHour;
     }
 
-    public boolean equals(Dog dog) {
-        return super.equals(dog) && this.sportHour == dog.sportHour;
-    }
-     @Override 
-    public String toString() {
-    String str = "";
-    
-    str += super.toString();
-    str += String.format("%-10s: %s\n", "Sport Hour", sportHour);
-    
-    return str;
-    }
-    
-    public int getSportHour() {
-        return sportHour;
+    public int getSleepHour() {
+        return sleepHour;
     }
 
-    public void setSportHour(int sportHour) {
-        this.sportHour = sportHour;
+    public void setSleepHour(int sleepHour) {
+        this.sleepHour = sleepHour;
     }
 
 }
